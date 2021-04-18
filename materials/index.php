@@ -22,7 +22,7 @@ include_once "../layouts/header.php";
 
 echo
     "
-        <div class='right-button-margin'>
+        <div class='right-button-margin mb-3'>
             <a href='create.php' class='btn btn-primary float-end'>Create Materials</a>
         </div>
     ";
@@ -36,6 +36,7 @@ if ($num>0) {
             echo "<th>Description</th>";
             echo "<th>Category</th>";
             echo "<th>Created</th>";
+            echo "<th>Updated</th>";
             echo "<th>Actions</th>";
         echo "</tr>";
 
@@ -53,13 +54,14 @@ if ($num>0) {
                     echo $category->name;
                 echo "</td>";
                 echo "<td>{$created_at}</td>";
+                echo "<td>{$updated_at}</td>";
                 echo "<td>";
                     // read, edit and delete buttons
-                    echo "<a href='read_one.php?id={$id}' class='btn btn-primary left-margin'>
+                    echo "<a href='read.php?id={$id}' class='btn btn-primary left-margin'>
                     <span class='glyphicon glyphicon-list'></span> Read
                     </a>
 
-                    <a href='update_product.php?id={$id}' class='btn btn-info left-margin'>
+                    <a href='update.php?id={$id}' class='btn btn-info left-margin'>
                     <span class='glyphicon glyphicon-edit'></span> Edit
                     </a>
 
@@ -72,11 +74,14 @@ if ($num>0) {
 
     echo "</table>";
 
-    // paging buttons will be here
+    $page_url = "index.php?";
+    $total_rows = $material->countAll();
+    include_once '../layouts/paging.php';
 }
 
 else {
     echo "<div class='alert alert-info'>No products found.</div>";
 }
+
 include_once "../layouts/footer.php";
 ?>

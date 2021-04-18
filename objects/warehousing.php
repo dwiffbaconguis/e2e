@@ -71,4 +71,47 @@ class Warehousing
 
         return $statement;
     }
+
+    public function countAll()
+    {
+        $query = "SELECT id FROM {$this->tableName}";
+
+        $statement = $this->connection->prepare( $query );
+        $statement->execute();
+
+        $num = $statement->rowCount();
+
+        return $num;
+    }
+
+    public function readOne()
+    {
+        $query = "SELECT
+                    id,
+                    material_id,
+                    location_id,
+                    price,
+                    quantity,
+                    status,
+                    created_at,
+                    updated_at
+                FROM
+                    {$this->tableName}
+                WHERE
+                    id = ?
+                LIMIT
+                    0, 1";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(1, $this->id);
+        $statement->execute();
+
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        $this->material_id = $row['material_id'];
+        $this->location_id = $row['location_id'];
+        $this->price = $row['price'];
+        $this->quantity = $row['quantity'];
+        $this->status = $row['status'];
+    }
 }

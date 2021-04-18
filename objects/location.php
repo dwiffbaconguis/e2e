@@ -2,8 +2,11 @@
 
 class Location
 {
-    public $connection;
-    public $tableName = 'locations';
+    private $connection;
+    private $tableName = 'locations';
+
+    public $id;
+    public $name;
 
     public function __construct($connection)
     {

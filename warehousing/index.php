@@ -31,7 +31,7 @@ echo
 
 if ($num>0) {
 
-    echo "<table class='table table-hover table-responsive table-bordered'>";
+    echo "<table class='table table-hover table-responsive table-bordered table-compact'>";
         echo "<tr>";
             echo "<th>Material</th>";
             echo "<th>Location</th>";
@@ -67,7 +67,7 @@ if ($num>0) {
                     <span class='glyphicon glyphicon-list'></span> Read
                     </a>
 
-                    <a href='update_product.php?id={$id}' class='btn btn-info left-margin'>
+                    <a href='update.php?id={$id}' class='btn btn-info left-margin'>
                     <span class='glyphicon glyphicon-edit'></span> Edit
                     </a>
 
@@ -80,7 +80,9 @@ if ($num>0) {
 
     echo "</table>";
 
-    // paging buttons will be here
+    $page_url = "index.php?";
+    $total_rows = $warehousing->countAll();
+    include_once '../layouts/paging.php';
 }
 
 else {

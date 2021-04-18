@@ -36,50 +36,48 @@ if ($_POST) {
     }
 }
 ?>
-<div class="container-fluid">
-    <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" >
-        <div class="form-group">
-            <label for="material_id" class="form-label">Material</label>
-            <?php
-                $statement = $material->read();
+<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" >
+    <div class="form-group">
+        <label for="material_id" class="form-label">Material</label>
+        <?php
+            $statement = $material->read();
 
-                echo "<select class='form-control' name='material_id'>";
-                    echo "<option>Select location...</option>";
+            echo "<select class='form-control' name='material_id'>";
+                echo "<option>Select location...</option>";
 
-                    while ($row_material = $statement->fetch(PDO::FETCH_ASSOC)){
-                        extract($row_material);
-                        echo "<option value='{$id}'>{$name}</option>";
-                    }
+                while ($row_material = $statement->fetch(PDO::FETCH_ASSOC)){
+                    extract($row_material);
+                    echo "<option value='{$id}'>{$name}</option>";
+                }
 
-                echo "</select>";
-            ?>
-        </div>
-        <div class="form-group">
-            <label for="location_id" class="form-label">Location</label>
-            <?php
-                $statement = $location->read();
+            echo "</select>";
+        ?>
+    </div>
+    <div class="form-group">
+        <label for="location_id" class="form-label">Location</label>
+        <?php
+            $statement = $location->read();
 
-                echo "<select class='form-control' name='location_id'>";
-                    echo "<option>Select location...</option>";
+            echo "<select class='form-control' name='location_id'>";
+                echo "<option>Select location...</option>";
 
-                    while ($row_location = $statement->fetch(PDO::FETCH_ASSOC)){
-                        extract($row_location);
-                        echo "<option value='{$id}'>{$name}</option>";
-                    }
+                while ($row_location = $statement->fetch(PDO::FETCH_ASSOC)){
+                    extract($row_location);
+                    echo "<option value='{$id}'>{$name}</option>";
+                }
 
-                echo "</select>";
-            ?>
-        </div>
-        <div class="form-group">
-            <label for="price" class="form-label">Price</label>
-            <input type="text" class="form-control" name="price" id="price">
-        </div>
-        <div class="form-group">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="text" class="form-control" name="quantity" id="quantity">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="index.php" class="btn btn-danger">Back</a>
-    </form>
-</div>
+            echo "</select>";
+        ?>
+    </div>
+    <div class="form-group">
+        <label for="price" class="form-label">Price</label>
+        <input type="text" class="form-control" name="price" id="price" required>
+    </div>
+    <div class="form-group">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input type="text" class="form-control" name="quantity" id="quantity" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="index.php" class="btn btn-danger">Back</a>
+</form>
 <?php include_once "../layouts/footer.php"; ?>
