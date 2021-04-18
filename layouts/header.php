@@ -18,8 +18,9 @@
 <body>
     <!-- container -->
     <div class="container-fluid">
-        <?= include_once "navbar.php" ?>
+
         <?=
+            include_once "navbar.php";
             "<div class='page-header'>
                 <h3>{$page_title}</h3>
             </div>";

@@ -8,13 +8,13 @@ $id = isset($_GET['id']) ? $_GET['id'] : die("Material ID: Not Found");
 include_once '../config/database.php';
 include_once '../objects/material.php';
 include_once '../objects/location.php';
-include_once '../objects/warehousing.php';
+include_once '../objects/materialLocation.php';
 
 $db = (new Database())->getConnection();
 
 $material = new Material($db);
 $location = new Location($db);
-$materialLocation = new Warehousing($db);
+$materialLocation = new MaterialLocation($db);
 
 $materialLocation->id = $id;
 $materialLocation->readOne();
@@ -42,7 +42,7 @@ if ($_POST) {
 }
 ?>
 
-<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id=:id"); ?>" method="post" >
+<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}"); ?>" method="post" >
     <div class="form-group">
         <label for="material_id" class="form-label">Material</label>
         <?php

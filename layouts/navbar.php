@@ -10,16 +10,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Materials</a>
+          <a class="nav-link active" aria-current="page" href="//localhost/e2e/materials">Materials</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Category</a>
+          <a class="nav-link" href="//localhost/e2e/categories">Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Location</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Inventory Report</a>
+          <a class="nav-link" href="//localhost/e2e/warehousing">Inventory Report</a>
         </li>
       </ul>
     </div>

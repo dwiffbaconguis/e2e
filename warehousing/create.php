@@ -6,7 +6,7 @@ include_once "../layouts/header.php";
 include_once '../config/database.php';
 include_once '../objects/material.php';
 include_once '../objects/location.php';
-include_once '../objects/warehousing.php';
+include_once '../objects/materialLocation.php';
 
 // get database connection
 $database = new Database();
@@ -15,7 +15,7 @@ $db = $database->getConnection();
 // pass connection to objects
 $material = new Material($db);
 $location = new Location($db);
-$materialLocation = new Warehousing($db);
+$materialLocation = new MaterialLocation($db);
 ?>
 
 <?php

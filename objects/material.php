@@ -181,4 +181,22 @@ class Material
 
         return false;
     }
+
+    public function delete()
+    {
+        $query = "DELETE
+                FROM
+                    {$this->tableName}
+                WHERE
+                    id = ?";
+
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(1, $this->id);
+
+        if ($statement->execute()) {
+            return true;
+        }
+
+        return false;
+    }
 }

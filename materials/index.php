@@ -23,7 +23,7 @@ include_once "../layouts/header.php";
 echo
     "
         <div class='right-button-margin mb-3'>
-            <a href='create.php' class='btn btn-primary float-end'>Create Materials</a>
+            <a href='create.php' class='btn btn-primary float-end'>Create Material</a>
         </div>
     ";
 
@@ -65,7 +65,7 @@ if ($num>0) {
                     <span class='glyphicon glyphicon-edit'></span> Edit
                     </a>
 
-                    <a delete-id='{$id}' class='btn btn-danger delete-object'>
+                    <a delete-id='{$id}' class='btn btn-danger delete'>
                     <span class='glyphicon glyphicon-remove'></span> Delete
                     </a>";
                 echo "</td>";
