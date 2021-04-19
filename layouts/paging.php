@@ -2,7 +2,7 @@
 echo "<ul class=\"pagination\">";
 
 // button for first page
-if($page>1){
+if ($page > 1) {
     echo "<li><a href='{$page_url}' title='Go to the first page.'>";
         echo "First Page";
     echo "</a></li>";
