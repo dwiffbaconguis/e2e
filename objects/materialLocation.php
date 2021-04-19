@@ -207,4 +207,71 @@ class MaterialLocation
 
         return false;
     }
+
+        // read products by search term
+    public function search($search_term, $fromRecordNum, $recordsPerPage)
+    {
+        // select query
+        $query = "SELECT
+                    material_location.id,
+                    materials.name as material,
+                    locations.name as location,
+                    categories.name as category,
+                    material_location.price,
+                    material_location.quantity,
+                    material_location.status,
+                    material_location.created_at,
+                    material_location.updated_at
+                FROM
+                    {$this->tableName}
+                JOIN
+                    materials ON materials.id = material_location.material_id
+                JOIN
+                    locations ON locations.id = material_location.location_id
+                JOIN
+                    categories ON categories.id = materials.category_id
+                WHERE
+                    locations.name LIKE ? OR material_location.status LIKE ?
+                ORDER BY
+                    material_location.created_at DESC
+                LIMIT
+                    ?, ?";
+
+        $statement = $this->connection->prepare( $query );
+
+        $search_term = "%{$search_term}%";
+        $statement->bindParam(1, $search_term);
+        $statement->bindParam(2, $search_term);
+        $statement->bindParam(3, $fromRecordNum, PDO::PARAM_INT);
+        $statement->bindParam(4, $recordsPerPage, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement;
+    }
+
+    public function countAll_BySearch($search_term){
+
+        // select query
+        $query = "SELECT
+                    COUNT(*) as total_rows
+                FROM
+                    {$this->tableName} AS ml
+                JOIN
+                    locations ON locations.id = ml.location_id
+                WHERE
+                    locations.name LIKE ? OR ml.status LIKE ?";
+        // prepare query statement
+        $statement = $this->connection->prepare( $query );
+
+        // bind variable values
+        $search_term = "%{$search_term}%";
+        $statement->bindParam(1, $search_term);
+        $statement->bindParam(2, $search_term);
+
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $row['total_rows'];
+    }
 }
